@@ -1,0 +1,22 @@
+{% extends 'registration/base.html' %}
+
+<h2>Welcome, {{ user.get_full_name }} </h2>
+{% block content %}
+  <p>Your email address is: {{ user.email }}</p>
+<p>Choose your class: </p>
+
+<form action="test">
+
+  <select name="std" id="std">
+    <option value="8th">8</option>
+    <option value="9th">9</option>
+    <option value="10th">10</option>
+    <option value="11th">11</option>
+    <option value="12th">12</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
+
