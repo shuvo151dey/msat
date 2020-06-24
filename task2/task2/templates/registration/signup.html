@@ -1,21 +1,37 @@
-{% extends 'registration/base.html' %}
+{% extends 'registration/base1.html' %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
+  <h3 class="text-center">Sign up</h3>
+  <form method="post" class="center">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
+      <div class="form-group center" style="transform: scale(0.8); text-align: center;">
         {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
+        
+      </div>
+      <div style="text-align:center;line-height: 0.6rem;">
+        {% if field.help_text%}
+        <small style="color: grey" style="transform: scale(1.25);">{{ field.help_text }}</small>
+      </div>
+          
         {% endif %}
         {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
+          <p style="color: red" style="transform: scale(0.7);">{{ error }}</p>
         {% endfor %}
-      </p>
+      
+      
+      
     {% endfor %}
-    <button type="submit">Sign up</button>
+      <div class="form-group center" style="transform: scale(0.9);">
+        <select class="form-control" name="std" id="std" style="width: 60%;">
+          <option>Select Your class</option>
+          <option value="8th">8</option>
+          <option value="9th">9</option>
+          <option value="10th">10</option>
+          <option value="11th">11</option>
+          <option value="12th">12</option>
+        </select>
+      </div>
+    <button class="btn btn-primary btn-block mt-1" type="submit" style="margin: 0 auto;">Sign up</button> 
   </form>
 {% endblock %}

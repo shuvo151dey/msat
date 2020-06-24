@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 
-@login_required
-def home(request):
-    return render(request, 'registration/home1.html')
+def logoutUser(request):
+    logout(request)
+    return redirect('signup')
+        
 
 
 def signup(request):
@@ -17,7 +18,11 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home1')
+            
+            return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        return render(request, 'registration/signup.html', {'form': form}) 

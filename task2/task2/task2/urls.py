@@ -21,10 +21,8 @@ from login import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', v.home, name='home1'),
+    
     path('test/', views.home, name='home'),
-    path(r'^login/$', auth_views.LoginView.as_view(), {'template_name': 'login.html'}, name='login'),
-    path(r'^logout/$', auth_views.LogoutView.as_view(), {'next_page': 'login'}, name='logout'),
-    path(r'^signup/$', v.signup, name='signup'),
-    path('test/logout/', auth_views.LogoutView.as_view(), {'next_page': 'login'}, name='test_logout'),
+    path('', v.signup, name='signup'),
+    path('test/logout/', v.logoutUser, name='test_logout'),
 ]
